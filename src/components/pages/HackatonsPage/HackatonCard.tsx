@@ -58,7 +58,7 @@ const HackatonCard = ({ hackaton, allInfo = false }: Props) => {
           onClick={() => setIsHackatonModalOpen(true)}
         >
           <img
-            src={`../../../../public/images/${image}`}
+            src={`/images/${image}`}
             alt={name}
             className="rounded-[20px] h-[250px] w-full object-cover object-center"
           />
