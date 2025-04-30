@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header className="w-full wrapper flex justify-between border-b-2 gap-[100px] items-center">
       <Logo />
-      <div className="hidden md:flex justify-between flex-1">
+      <div className="hidden md:flex justify-between flex-1 items-center">
         <Navigation />
         <div className="flex gap-4">
           <UserNav />

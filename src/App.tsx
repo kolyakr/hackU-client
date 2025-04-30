@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom"; // правильний імпорт
+import { Route, Routes } from "react-router-dom";
 import Layout from "./components/ui/Layout";
 import HomePage from "./pages/HomePage";
 import ProjectsPage from "./pages/ProjectsPage";
