@@ -1,4 +1,4 @@
-import { Project } from "./createProjectRequest.interface";
+import { Project } from "./project.interface";
 
 export interface ProjectState {
   projects: Project[];

@@ -1,5 +1,5 @@
 import { useHackatons } from "@/hooks/useHackatons";
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import HackatonCard from "./HackatonCard";
 import { PacmanLoader } from "react-spinners";
 import CategoryFilter from "./CategoryFilter";

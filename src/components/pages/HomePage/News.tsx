@@ -1,5 +1,4 @@
 import { events } from "@/config";
-import React from "react";
 
 const News = () => {
   return (

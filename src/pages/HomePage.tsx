@@ -1,6 +1,5 @@
 import Hero from "@/components/pages/HomePage/Hero";
 import News from "@/components/pages/HomePage/News";
-import React from "react";
 import { Link } from "react-router-dom";
 
 const HomePage = () => {

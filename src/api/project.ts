@@ -1,5 +1,4 @@
 import { SERVER_URL } from "@/constants";
-import { CreateProjectRequest } from "@/types/createProjectRequest.interface";
 import axios from "axios";
 
 const instance = axios.create({
@@ -20,7 +19,9 @@ export const createProject = async ({
   payload,
   token,
 }: {
-  payload: CreateProjectRequest;
+  payload: {
+    hackatonId: string;
+  };
   token: string;
 }) => {
   const response = await instance.post("/", payload, {
