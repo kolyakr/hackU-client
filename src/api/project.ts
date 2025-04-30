@@ -3,7 +3,7 @@ import { CreateProjectRequest } from "@/types/createProjectRequest.interface";
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: `http://localhost:3000/projects`,
+  baseURL: `${SERVER_URL}/projects`,
   withCredentials: true,
 });
 
