@@ -13,8 +13,11 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import { app } from "@/firebase";
+import googleIcon from "/images/google.png";
 
 type AuthType = LoginUserType & { name?: string };
 
@@ -56,6 +59,21 @@ const AuthForm = ({ type }: { type: "register" | "login" }) => {
     }
   };
 
+  const handleGoogleLogin = async () => {
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    try {
+      await signInWithPopup(auth, provider);
+      // Google user info is in result.user
+      navigate("/");
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        alert(error.message);
+      }
+    }
+  };
+
   return (
     <form
       className="flex flex-col gap-7 max-w-[500px] w-full p-[30px] border rounded-[20px]"
@@ -63,7 +81,7 @@ const AuthForm = ({ type }: { type: "register" | "login" }) => {
     >
       {type === "register" && (
         <div className="relative">
-          <Input {...register("name")} placeholder="Enter name" />
+          <Input {...register("name")} placeholder="Введіть ім'я" />
           {errors.name && (
             <p className="absolute text-sm text-red-700 font-bold top-[40px]">
               {errors.name.message}
@@ -72,7 +90,7 @@ const AuthForm = ({ type }: { type: "register" | "login" }) => {
         </div>
       )}
       <div className="relative">
-        <Input {...register("email")} placeholder="Enter email" />
+        <Input {...register("email")} placeholder="Введіть email" />
         {errors.email && (
           <p className="absolute text-sm text-red-700 font-bold top-[40px]">
             {errors.email.message}
@@ -83,7 +101,7 @@ const AuthForm = ({ type }: { type: "register" | "login" }) => {
         <Input
           type="password"
           {...register("password")}
-          placeholder="Enter password"
+          placeholder="Введіть пароль"
         />
         {errors.password && (
           <p className="absolute text-sm text-red-700 font-bold top-[40px]">
@@ -93,13 +111,26 @@ const AuthForm = ({ type }: { type: "register" | "login" }) => {
       </div>
       <div className="flex flex-col gap-5 items-center">
         <Button type="submit" className="max-w-[100px]">
-          {type === "register" ? "Register" : "Login"}
+          {type === "register" ? "Реєстрація" : "Вхід"}
         </Button>
         <Link to={`/auth/${type === "register" ? "login" : "register"}`}>
           {type === "register"
-            ? "Already have an account? Login"
-            : "Don’t have an account? Register"}
+            ? "Вже маєте акаунт? Увійдіть"
+            : "Не маєте акаунта? Зареєструйтесь"}
         </Link>
+
+        <div className="relative mt-4 w-full">
+          <Button
+            type="button"
+            onClick={handleGoogleLogin}
+            className="w-full flex items-center justify-center gap-3 border rounded-[12px] p-2"
+          >
+            <img src={googleIcon} alt="Google" className="w-6 h-6" />
+            <span className="text-black font-semibold">
+              Увійти через Google
+            </span>
+          </Button>
+        </div>
       </div>
     </form>
   );
